@@ -7,7 +7,7 @@ let colors = {
     "white": "#ffffff"
 };
 
-let order = ["blue", "cyan", "orange", "pink", "white", "cyan", "orange", "pink", "white", "cyan", "orange", "pink", "white", "cyan", "orange", "pink", "white", "cyan", "orange", "pink", "white", "cyan", "orange", "pink", "white"];
+let order = ["blue", "cyan", "orange", "pink", "white", "cyan"];
 
 let pullDownSpeed = -2;
 
@@ -61,6 +61,7 @@ function pullDown() {
         panels.forEach(function(panel) { panel.y = panel.y - 20 * acceleration.f(msElapsed / 1000.0); });
         msElapsed = msElapsed + msPerFrame;
     }, msPerFrame); 
+    $("#pulldown-btn").fadeOut("slow", function() {});
 }
 
 function setupHero() {
