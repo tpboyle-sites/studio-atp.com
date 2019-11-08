@@ -1,4 +1,7 @@
 
+
+// DEFINITIONS
+
 let colors = {
     "blue": "#0c132a",
     "cyan": "#70c8b9",
@@ -9,9 +12,10 @@ let colors = {
 
 let order = ["blue", "cyan", "orange", "pink", "white", "cyan"];
 
-let pullDownSpeed = -2;
-
 var ctx, panels;
+
+
+// CLASSES
 
 class Panel {
     constructor(width, height, x, y, color) {
@@ -41,15 +45,31 @@ class NormalCurve {
     }
 }
 
-$(function () {
-    setupHero();
-});
+
+// ANIMATION
 
 function draw(ctx, panels) {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     panels.forEach(function(panel) {
         panel.draw(ctx);
     });
+}
+
+
+// EVENTS
+
+function setupEvents(ctx, panels) {
+    $("#pulldown-btn").click(pullDown);
+    $("#close-btn").click(closeHero);
+}
+
+function hideHeroControls() {
+    $("#pulldown-btn").fadeOut("slow", function() {});
+    $("#close-btn").fadeOut("slow", function() {});
+}
+
+function closeHero() {
+    $(".hero").fadeOut("slow", function() {});
 }
 
 function pullDown() {
@@ -61,20 +81,17 @@ function pullDown() {
         panels.forEach(function(panel) { panel.y = panel.y - 20 * acceleration.f(msElapsed / 1000.0); });
         msElapsed = msElapsed + msPerFrame;
     }, msPerFrame); 
-    $("#pulldown-btn").fadeOut("slow", function() {});
+    hideHeroControls();
 }
+
+
+// SETUP
 
 function setupHero() {
     ctx = $('#hero-canvas')[0].getContext('2d');
     panels = createPanels(ctx);
     setupEvents(ctx, panels);
     draw(ctx, panels);
-}
-
-function setupEvents(ctx, panels) {
-    $( "#pulldown-btn" ).click(function() {
-        pullDown();
-    });
 }
 
 function createPanels(ctx) {
@@ -87,3 +104,8 @@ function createPanels(ctx) {
     });
     return panels;
 }
+
+
+// DOCUMENT READY
+
+$(function () { setupHero(); });
