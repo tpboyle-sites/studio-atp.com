@@ -7,8 +7,9 @@ let colors = {
     "white": "#ffffff"
 };
 
-let order = ["blue", "cyan", "orange", "pink", "white"];
-let pullDownSpeed = -4;
+let order = ["blue", "cyan", "orange", "pink", "white", "cyan", "orange", "pink", "white", "cyan", "orange", "pink", "white", "cyan", "orange", "pink", "white", "cyan", "orange", "pink", "white", "cyan", "orange", "pink", "white"];
+
+let pullDownSpeed = -2;
 
 var ctx, panels;
 
@@ -27,6 +28,19 @@ class Panel {
     }
 }
 
+class NormalCurve {
+    constructor(mean, stdDev) {
+        this.mean = mean;
+        this.stdDev = stdDev;
+    }
+
+    f(x) {
+        var ePower = Math.pow(Math.E, (-1 * Math.pow((x - this.mean), 2) / (2 * Math.pow(this.stdDev, 2))));
+        var coeff = 1 / (this.stdDev * Math.sqrt(2 * Math.PI))
+        return coeff * ePower;
+    }
+}
+
 $(function () {
     setupHero();
 });
@@ -39,10 +53,14 @@ function draw(ctx, panels) {
 }
 
 function pullDown() {
+    var msPerFrame = 10;
+    var msElapsed = 0;
+    var acceleration = new NormalCurve(2, 1);
     setInterval(function() { 
         draw(ctx, panels); 
-        panels.forEach(function(panel) { panel.y = panel.y + pullDownSpeed; });
-    }, 10); 
+        panels.forEach(function(panel) { panel.y = panel.y - 20 * acceleration.f(msElapsed / 1000.0); });
+        msElapsed = msElapsed + msPerFrame;
+    }, msPerFrame); 
 }
 
 function setupHero() {
@@ -59,10 +77,12 @@ function setupEvents(ctx, panels) {
 }
 
 function createPanels(ctx) {
-    var panels = [], y = 0;
+    var panels = [];
+    var bottomY = 0;
     order.forEach(function(color) {
-        panels.push(new Panel(ctx.canvas.width, ctx.canvas.height, 0, y * ctx.canvas.height, colors[color]));
-        y++;
+        var height = ctx.canvas.height;
+        panels.push(new Panel(ctx.canvas.width, height, 0, bottomY, colors[color]));
+        bottomY = bottomY + height;
     });
     return panels;
 }
