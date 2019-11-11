@@ -11,10 +11,10 @@ let colors = {
 };
 
 let INITIAL_PANEL_ORDER = ["blue", "cyan", "orange", "pink", "white"];
-let NEVER_GENERATE = ["blue"];
+let NEVER_GENERATE = ["blue", "white"];
 
 let MIN_ADDL_PANELS = 1
-let MAX_ADDL_PANELS = 5;
+let MAX_ADDL_PANELS = 4;
 
 var ctx, panels;
 
@@ -79,13 +79,18 @@ function closeHero() {
 function pullDown() {
     var msPerFrame = 10;
     var msElapsed = 0;
-    var acceleration = new NormalCurve(2, 1);
+    var acceleration = new NormalCurve(2, 1.3);
+
     setInterval(function() { 
         draw(ctx, panels); 
         panels.forEach(function(panel) { panel.y = panel.y - 20 * acceleration.f(msElapsed / 1000.0); });
         msElapsed = msElapsed + msPerFrame;
     }, msPerFrame); 
     hideHeroControls();
+}
+
+function updatePanels() {
+    
 }
 
 
