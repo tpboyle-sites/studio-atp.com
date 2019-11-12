@@ -89,10 +89,6 @@ function pullDown() {
     hideHeroControls();
 }
 
-function updatePanels() {
-    
-}
-
 
 // SETUP
 
@@ -112,14 +108,20 @@ function setupHero() {
     draw(ctx, panels);
 }
 
+
 // DETAIL
 
 function updateDetailColorScheme() {
     var topColor = getRandomColor(getAllPermittedColorsExcept("blue")); 
-    $(".detail .content").addClass("bg-" + topColor);
-    var bottomColor = getRandomColor(getAllPermittedColorsExcept(topColor));
-    $(".detail .navbar").addClass("bg-" + bottomColor);
+    $(".detail").addClass("bg-" + topColor);
+    // var bottomColor = getRandomColor(getAllPermittedColorsExcept(topColor));
+    // $(".detail .navbar").addClass("bg-" + bottomColor);
 }
+
+function showNavBar() {
+    $(".detail .navbar").fadeIn(700);
+}
+
 
 // PANELS
 
@@ -150,11 +152,11 @@ function getAddlPanelColors(totalPanels, colorOrder) {
         colorOrder.push(getRandomColor(availableColors));
     }
     // last panel matches detail bg
-    colorOrder.push(getDetailElementColors("content"));
+    colorOrder.push(getDetailColors());
 }
 
-function getDetailElementColors(className) {
-    var classes = $(".detail ." + className).attr("class").split(/\s+/);
+function getDetailColors(className) {
+    var classes = $(".detail").attr("class").split(/\s+/);
     var bgRegex = /^bg-(\w+)/i;
     var color = "";
     classes.forEach(function(cls) {
