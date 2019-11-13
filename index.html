@@ -2,7 +2,18 @@
     <head>
         <title>Patrick Boyle - Software Developer</title>
         <link rel="stylesheet" type="text/css" href="css/main.css">
+
         <script src="js/includes/jquery-3.4.1.min.js"></script>
+        <script src="js/includes/easing.js"></script>
+
+        <script src="js/classes/curves.js"></script>
+        <script src="js/classes/panel.js"></script>
+        <script src="js/classes/canvas.js"></script>
+        <script src="js/classes/layer.js"></script>
+        <script src="js/pages/hero.js"></script>
+        <script src="js/pages/detail.js"></script>
+        <script src="js/colors.js"></script>
+        <script src="js/anim.js"></script>
         <script src="js/main.js"></script>
     </head>
     <body>
@@ -15,20 +26,21 @@
             <div class="hero">
                 <input type="image" id="close-btn" src="images/icons/x.svg" alt="Close">
                 <input type="image" id="pulldown-btn" src="images/icons/pulldown.svg" alt="Pulldown">
-                <canvas id="hero-canvas"></canvas>
+                <canvas class="full-screen-canvas" id="hero-canvas"></canvas>
             </div>
 
             <div class="detail">
-                <div class="content"></div>
-
-
-                <div class="navbar">
-                    <a href="./about.html">About</a>
-                    <a></a>
-                    <a href="./contact.html">Contact</a>
+                <div class="text-overlay" hidden>
+                    <div class="content"></div>
+                    <div class="navbar">
+                        <a href="./about.html">About</a>
+                        <a></a>
+                        <a href="./contact.html">Contact</a>
+                    </div>
                 </div>
-
-                
+                <div class="background">
+                    <canvas class="full-screen-canvas" id="detail-canvas"></canvas>
+                </div>
             </div>
         </div>
     </body>

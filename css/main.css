@@ -16,13 +16,19 @@ body {
     position: relative;
 }
 
+/* canvas */
+
+.full-screen-canvas {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+}
+
 /* hero */
 
 #hero-canvas {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    z-index: 1;
+    z-index: 3;
 }
 
 .name {
@@ -32,7 +38,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 
-    z-index: 2;
+    z-index: 5;
 }
 
 .name img {
@@ -44,14 +50,14 @@ body {
     position: absolute;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 2;
+    z-index: 4;
 }
 
 #close-btn {
     position: absolute;
     width: 10%;
     top: 5%;
-    z-index: 2;
+    z-index: 4;
 }
 
 @media all and (orientation:portrait) {
@@ -88,13 +94,17 @@ body {
 
 /* detail */
 
+#detail-canvas {
+    z-index: 1;
+}
+
 .detail {
+    position: absolute;
     height: 100%;
     width: 100%;
-    position: absolute;
     top: 0;
     left: 0;
-    z-index: 0;
+    z-index: 1;
 }
 
 .navbar {
