@@ -23,11 +23,17 @@ function getAllPermittedColors() {
     return permittedColors;
 }
 
-function getAllPermittedColorsExcept(colorName) {
-    var colorNames = getAllPermittedColors();
-    var i = colorNames.indexOf(colorName);
-    colorNames.splice(i, 1);
-    return colorNames;
+function getAllPermittedColorsExcept(excludeColors) {
+    if (!(excludeColors instanceof Array))
+        excludeColors = [excludeColors];
+
+    var colorSelection = getAllPermittedColors();
+    excludeColors.forEach(function(color) {
+        var i = colorSelection.indexOf(color);
+        colorSelection.splice(i, 1);
+    });
+    
+    return colorSelection;
 }
 
 

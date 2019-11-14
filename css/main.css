@@ -2,6 +2,8 @@
 body {
     /* Override default margin */
     margin: 10px;
+    overflow: hidden;
+    z-index: 0;
 }
 
 @font-face {
@@ -12,8 +14,9 @@ body {
 /* page anchor */
 
 #home-page {
-    height: 100%;
     position: relative;
+    height: 100%;
+    width: 100%;
 }
 
 /* canvas */
@@ -32,13 +35,14 @@ body {
 }
 
 .name {
+    /* position/size */
+    z-index: 5;
     /* center horizontally and vertically */
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 
-    z-index: 5;
 }
 
 .name img {
@@ -95,33 +99,76 @@ body {
 /* detail */
 
 #detail-canvas {
-    z-index: 1;
+    z-index: -2;
 }
 
 .detail {
+    /* position/size */
+    z-index: 1;
     position: absolute;
-    height: 100%;
-    width: 100%;
     top: 0;
     left: 0;
-    z-index: 1;
+    height: 100%;
+    width: 100%;
+
+    /* overflow */
+    overflow: hidden;
 }
 
 .navbar {
+    /* position/size */
+    z-index: 1;
     position: absolute;
-    width: 100%;
-    height: 10%;
-    margin: 0px 0px 0px 0px;
+    top: 90%;
+    width: 102%;
+    height: 15%;
+
+    /* content */
     text-align: center;
+
+    /* animation */
+    transform: rotate(1deg);
+    animation: float 6s ease-in-out infinite;
+    transition: transform 2s linear;
+}
+
+.navbar:hidden {
+    /* position */
+    top: 100%;
+
+    /* animation */
+    transition: transform 2s linear;
+}
+
+.navbar > .display {
+    /* position/size */
+    z-index: 1;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.navbar > .shadow {
+    /* position/size */
+    z-index: 0;
+    position: absolute;
+    left: -2%;
+    top: -20px;
+    height: 100%;
+    width: 100%;
+    transform: rotate(-1deg);
 }
 
 .navbar a {
+    /* position/size */
+    display: inline-block;
+    margin: 30px 10px;
+
+    /* font */
     font-family: testfont;
     text-decoration: none;
     font-size: 6vh;
     color: white;
-    display: inline-block;
-    margin: 30px 10px;
     line-height: 100%;
 }
 
@@ -130,25 +177,17 @@ body {
     height: 90%;
 }
 
-
-/* background colors */
-
-.bg-blue {
-    background-color: #0c132a;
-}
-
-.bg-cyan {
-    background-color: #70c8b9;
-}
-
-.bg-orange {
-    background-color: #febf10;
-}
-
-.bg-pink {
-    background-color: #ee4699;
-}
-
-.bg-white {
-    background-color: #ffffff;
+@keyframes float {
+	0% {
+		/* box-shadow: -5px -5px 0px 0px rgba(0,0,0,0.4); */
+		transform: translatey(0px);
+	}
+	50% {
+		/* box-shadow: -5px -7px 0px 0px rgba(0,0,0,0.2); */
+		transform: translatey(-20px);
+	}
+	100% {
+		/* box-shadow: -5px -5px 0px 0px rgba(0,0,0,0.4); */
+		transform: translatey(0px);
+	}
 }

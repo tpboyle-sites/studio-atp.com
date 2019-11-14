@@ -3,24 +3,34 @@
 var detailCanvas;
 
 
-// DETAIL
+// SETUP
 
 function setupDetail() {
-    detailCanvas = new Canvas("#detail-canvas");
-    buildPanels();
-    detailCanvas.draw();
+    applyColors(randomizeColors());
 }
 
-function buildPanels() {
+// COLORS
+
+function randomizeColors() {
     var contentColor = getRandomColor(getAllPermittedColors()); 
-    var detailContent = new Panel(detailCanvas.width(), detailCanvas.height(), 0, 0, contentColor);
-    detailCanvas.addLayer(new Layer("content", 0, [detailContent]));
     var navbarColor = getRandomColor(getAllPermittedColorsExcept(contentColor));
-    var detailNavbar = new Panel(detailCanvas.width(), 30, 0, detailCanvas.height(), navbarColor);
-    detailCanvas.addLayer(new Layer("navbar", 1, [detailNavbar]));
+    var shadowColor = getRandomColor(getAllPermittedColorsExcept([contentColor, navbarColor]));
+    return {"content" : contentColor, "navbar" : navbarColor, "shadow" : shadowColor};
 }
 
-function showNavBar() {
+function applyColors(colors) {
+    $(".detail > .content").addClass("bg-" + colors['content']);
+    $(".detail > .navbar > .display").addClass("bg-" + colors['navbar']);
+    $(".detail > .navbar > .shadow").addClass("bg-" + colors['shadow']);
+}
+
+
+// ANIMATION
+
+function showNavBar() {}
+
+
+function showNavBarAnim() {
     var msTotal = 1000.0;
     var msPerFrame = 20;
     var numFrames = msTotal / msPerFrame;

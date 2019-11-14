@@ -5,7 +5,7 @@
 let INITIAL_PANEL_ORDER = ["blue", "cyan", "orange", "pink", "white"];
 let NEVER_GENERATE = ["blue", "white"];
 
-let MIN_ADDL_PANELS = 1
+let MIN_ADDL_PANELS = 1;
 let MAX_ADDL_PANELS = 4;
 
 
