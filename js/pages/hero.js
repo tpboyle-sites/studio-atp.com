@@ -20,14 +20,14 @@ function setupHero() {
     heroCanvas = new Canvas("#hero-canvas");
     var heroPanels = createHeroAnimPanelSet(generateColorOrder());
     heroCanvas.addLayer(new Layer("default", 0, heroPanels));
-    setupEvents();
+    setupHeroEvents();
     heroCanvas.draw();
 }
 
 
 // EVENTS
 
-function setupEvents() {
+function setupHeroEvents() {
     $("#pulldown-btn").click(pullDown);
     $("#close-btn").click(closeHero);
 }
@@ -53,7 +53,10 @@ function pullDown() {
         panels.forEach(function(panel) { 
             panel.y = panel.y - offset; 
             if (allPanelsHaveBeenShown(panels)) {
-                setTimeout(function() { showNavBar(); }, 500);
+                setTimeout(function() { 
+                    $(".hero").hide();
+                    showNavBar();
+                }, 500);
                 clearInterval(heroAnim);
             }
         });
@@ -65,7 +68,7 @@ function pullDown() {
 
 function allPanelsHaveBeenShown(panels) {
     for(var i = 0; i < panels.length; i++) {
-        if (panels[i].y < (-1 * panels.length * heroCanvas.height()))
+        if (panels[i].y < ((-1 * panels.length) * heroCanvas.height()))
             return true;
     }
     return false;

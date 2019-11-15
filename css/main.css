@@ -98,10 +98,6 @@ body {
 
 /* detail */
 
-#detail-canvas {
-    z-index: -2;
-}
-
 .detail {
     /* position/size */
     z-index: 1;
@@ -115,48 +111,49 @@ body {
     overflow: hidden;
 }
 
+.content-size {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* animation */
+    transition: top 150ms ease-in, 600ms ease-out;
+}
+
+.content {
+    z-index: 0;
+}
+
 .navbar {
-    /* position/size */
     z-index: 1;
+
+    /* content */
+    text-align: center;
+}
+
+.navbar-size {
+    /* position/size */
     position: absolute;
     top: 90%;
     width: 102%;
     height: 15%;
+}
 
-    /* content */
-    text-align: center;
-
+.navbar-anim {
     /* animation */
-    transform: rotate(1deg);
+    transition: top 150ms ease-in, 600ms ease-out;
+}
+
+.float {
+    /* animation */
     animation: float 6s ease-in-out infinite;
-    transition: transform 2s linear;
 }
 
-.navbar:hidden {
-    /* position */
-    top: 100%;
-
-    /* animation */
-    transition: transform 2s linear;
-}
-
-.navbar > .display {
-    /* position/size */
-    z-index: 1;
+.hideBottom {
     position: absolute;
-    height: 100%;
-    width: 100%;
-}
-
-.navbar > .shadow {
-    /* position/size */
-    z-index: 0;
-    position: absolute;
-    left: -2%;
-    top: -20px;
-    height: 100%;
-    width: 100%;
-    transform: rotate(-1deg);
+    top: 100% !important;
 }
 
 .navbar a {
@@ -170,11 +167,6 @@ body {
     font-size: 6vh;
     color: white;
     line-height: 100%;
-}
-
-.content {
-    width: 100%;
-    height: 90%;
 }
 
 @keyframes float {

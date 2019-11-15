@@ -37,8 +37,16 @@ function getAllPermittedColorsExcept(excludeColors) {
 }
 
 
+// DOM
+function getColorClass(jqueryObj) {
+    var classes = jqueryObj.attr('class').split(/\s+/);
+    return classes.filter(function(cls) { return cls.match(/bg-[\w+]/); })
+}
+
+
 // RANDOM
 
 function getRandomColor(colorPalette) {
     return colorPalette[getRandomInt(0, colorPalette.length)];
 }
+

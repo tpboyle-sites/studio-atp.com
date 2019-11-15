@@ -7,6 +7,7 @@ var detailCanvas;
 
 function setupDetail() {
     applyColors(randomizeColors());
+    setupDetailEvents();
 }
 
 // COLORS
@@ -20,43 +21,79 @@ function randomizeColors() {
 
 function applyColors(colors) {
     $(".detail > .content").addClass("bg-" + colors['content']);
-    $(".detail > .navbar > .display").addClass("bg-" + colors['navbar']);
-    $(".detail > .navbar > .shadow").addClass("bg-" + colors['shadow']);
+    $(".detail > .navbar").addClass("bg-" + colors['navbar']);
 }
 
+
+// NAVBAR
+
+function showNavBar() {
+    var navbar = $(".detail > .navbar");
+    navbar.removeClass("hideBottom");
+    navbar.addClass("navbar-size")
+    navbar.addClass("float");
+    navbar.children().show();
+}
 
 // ANIMATION
 
-function showNavBar() {}
-
-
-function showNavBarAnim() {
-    var msTotal = 1000.0;
-    var msPerFrame = 20;
-    var numFrames = msTotal / msPerFrame;
-
-    var msElapsed = 0;
-
-    var speedMult = 2;
-    var yStart = detailCanvas.height();
-    var yEnd = detailCanvas.height() - 20;
-    var yTotalDelta = yStart - yEnd;
-    var yCurrentDelta = 2;
-
-    var navbar = detailCanvas.getLayer("navbar")[0].getObjects()[0];
-    var navbarAnim = setInterval(
-        function() { 
-            var offset = speedMult * EasingFunctions.linear(yCurrentDelta / yTotalDelta);
-            navbar.y = navbar.y - offset; 
-            yCurrentDelta = yCurrentDelta + offset;
-            if (yCurrentDelta >= yTotalDelta) {
-                clearInterval(navbarAnim);
-            }
-            msElapsed = msElapsed + msPerFrame;
-            detailCanvas.draw(); 
-        }, 
-        msPerFrame
-    ); 
+function pullUp() {
+    hideNavBarLinks();
+    expandNavBar();
+    setTimeout(afterExpansion, 1000);
 }
 
+function expandNavBar() {
+    var navbar = $('.navbar');
+    navbar.removeClass('navbar-size');
+    navbar.removeClass('float');
+    navbar.addClass('content-size');
+}
+
+function hideNavBarLinks() {
+    $(".detail > .navbar > a").fadeOut("fast", function() {});
+}
+
+function afterExpansion() {
+    var colorClass = getOldContentsColor();
+    deleteOldContent();
+    transformOldNavBarToContent();
+    createNavBar(colorClass);
+    moveNavBarContents();
+    setTimeout(showNavBar, 1); // kludge -- only animates if timed out
+}
+
+function getOldContentsColor() {
+    return getColorClass($(".content"));
+}
+
+function deleteOldContent() {
+    $(".detail > .content").remove();
+}
+
+function createNavBar(colorClass) {
+    $(".detail").append("<div class='navbar navbar-anim float hideBottom " + colorClass + "'></div>");
+}
+
+function moveNavBarContents() {
+    $(".content").children().clone().appendTo($(".navbar"));
+    $(".content").children().remove();
+    setupNavBarEvents(); // set up clickies
+}
+
+function transformOldNavBarToContent() {
+    var navbar = $('.content-size'); // kludge
+    navbar.addClass("content");
+    navbar.removeClass("navbar");
+}
+
+// EVENTS
+
+function setupDetailEvents() {
+    setupNavBarEvents();
+}
+
+function setupNavBarEvents() {
+    $(".navbar > a").click(pullUp);
+}
 
