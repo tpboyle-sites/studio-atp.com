@@ -8,6 +8,8 @@ let colors = {
     "white": "#ffffff"
 };
 
+let NEVER_GENERATE = ["blue", "white"];
+
 
 // COLORS
 

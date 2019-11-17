@@ -3,7 +3,6 @@
 // CONSTANTS & SETTINGS
 
 let INITIAL_PANEL_ORDER = ["blue", "cyan", "orange", "pink", "white"];
-let NEVER_GENERATE = ["blue", "white"];
 
 let MIN_ADDL_PANELS = 1;
 let MAX_ADDL_PANELS = 4;
@@ -38,8 +37,7 @@ function hideHeroControls() {
 }
 
 function closeHero() {
-    $(".hero").fadeOut("slow", function() {});
-    showNavBar();
+    pullUpAfterHero();
 }
 
 function pullDown() {
@@ -53,10 +51,7 @@ function pullDown() {
         panels.forEach(function(panel) { 
             panel.y = panel.y - offset; 
             if (allPanelsHaveBeenShown(panels)) {
-                setTimeout(function() { 
-                    $(".hero").hide();
-                    showNavBar();
-                }, 500);
+                pullUpAfterHero();
                 clearInterval(heroAnim);
             }
         });
@@ -93,19 +88,9 @@ function createHeroAnimPanel(y, color) {
 }
 
 function generateColorOrder() {
-    var totalPanels = INITIAL_PANEL_ORDER.length + getNumAddlPanels();
-    var colorOrder = INITIAL_PANEL_ORDER;
-    getAddlPanelColors(totalPanels, colorOrder);
-    return colorOrder;
+    return INITIAL_PANEL_ORDER;
 }
 
 function getNumAddlPanels() {
     return getRandomInt(MIN_ADDL_PANELS, MAX_ADDL_PANELS);
-}
-
-function getAddlPanelColors(totalPanels, colorOrder) {
-    for(var i = colorOrder.length; i < totalPanels - 1; i++) {
-        var availableColors = getAllPermittedColorsExcept(colorOrder[colorOrder.length-1]);
-        colorOrder.push(getRandomColor(availableColors));
-    }
 }

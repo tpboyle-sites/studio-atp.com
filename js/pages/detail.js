@@ -24,6 +24,12 @@ function applyColors(colors) {
     $(".detail > .navbar").addClass("bg-" + colors['navbar']);
 }
 
+// NAME
+
+function showDetailName() {
+    $('.detail > .name').fadeIn('medium');
+}
+
 
 // NAVBAR
 
@@ -37,10 +43,23 @@ function showNavBar() {
 
 // ANIMATION
 
-function pullUp() {
+function pullUpAfterHero() {
+    pullUpDetail();
+    setTimeout(function() { 
+        $(".hero").hide();
+        showNavBar();
+        showDetailName();
+    }, 500);
+}
+
+function pullUpNavBar() {
     hideNavBarLinks();
     expandNavBar();
     setTimeout(afterExpansion, 1000);
+}
+
+function pullUpDetail() {
+    $('.detail').removeClass('hideBottom');
 }
 
 function expandNavBar() {
@@ -94,6 +113,6 @@ function setupDetailEvents() {
 }
 
 function setupNavBarEvents() {
-    $(".navbar > a").click(pullUp);
+    $(".navbar > a").click(pullUpNavBar);
 }
 
