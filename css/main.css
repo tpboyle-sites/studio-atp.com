@@ -31,13 +31,19 @@ body {
     width: 100%;
 }
 
+/* input */
+
+input {
+    outline: none;
+}
+
 /* hero */
 
 #hero-canvas {
     z-index: 3;
 }
 
-.hero > .name {
+.hero .name {
     /* position/size */
     z-index: 5;
 
@@ -48,7 +54,7 @@ body {
     transform: translate(-50%, -50%);
 }
 
-.detail > .name {
+.detail .name {
     /* position/size */
     z-index: 5;
 
@@ -127,7 +133,7 @@ body {
     transition: all 500ms ease-out;
 }
 
-.content-size {
+.background-size {
     position: absolute;
     top: 0;
     left: 0;
@@ -138,7 +144,7 @@ body {
     transition: top 150ms ease-in, 600ms ease-out;
 }
 
-.content {
+.background {
     z-index: 0;
 }
 
@@ -183,6 +189,17 @@ body {
     font-size: 6vh;
     color: white;
     line-height: 100%;
+}
+
+.content {
+    /* position/sizing */
+    z-index: 6;
+
+    /* center horizontally and vertically */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 @keyframes float {

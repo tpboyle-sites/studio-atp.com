@@ -8,26 +8,27 @@ var detailCanvas;
 function setupDetail() {
     applyColors(randomizeColors());
     setupDetailEvents();
+    $('.content').hide();
 }
 
 // COLORS
 
 function randomizeColors() {
-    var contentColor = getRandomColor(getAllPermittedColors()); 
-    var navbarColor = getRandomColor(getAllPermittedColorsExcept(contentColor));
-    var shadowColor = getRandomColor(getAllPermittedColorsExcept([contentColor, navbarColor]));
-    return {"content" : contentColor, "navbar" : navbarColor, "shadow" : shadowColor};
+    var backgroundColor = getRandomColor(getAllPermittedColors()); 
+    var navbarColor = getRandomColor(getAllPermittedColorsExcept(backgroundColor));
+    var shadowColor = getRandomColor(getAllPermittedColorsExcept([backgroundColor, navbarColor]));
+    return {"background" : backgroundColor, "navbar" : navbarColor, "shadow" : shadowColor};
 }
 
 function applyColors(colors) {
-    $(".detail > .content").addClass("bg-" + colors['content']);
+    $(".detail > .background").addClass("bg-" + colors['background']);
     $(".detail > .navbar").addClass("bg-" + colors['navbar']);
 }
 
 // NAME
 
 function showDetailName() {
-    $('.detail > .name').fadeIn('medium');
+    $('.detail .name').fadeIn('medium');
 }
 
 
@@ -66,7 +67,7 @@ function expandNavBar() {
     var navbar = $('.navbar');
     navbar.removeClass('navbar-size');
     navbar.removeClass('float');
-    navbar.addClass('content-size');
+    navbar.addClass('background-size');
 }
 
 function hideNavBarLinks() {
@@ -74,20 +75,20 @@ function hideNavBarLinks() {
 }
 
 function afterExpansion() {
-    var colorClass = getOldContentsColor();
-    deleteOldContent();
-    transformOldNavBarToContent();
+    var colorClass = getOldbackgroundColor();
+    deleteOldbackground();
+    transformOldNavBarTobackground();
     createNavBar(colorClass);
     moveNavBarContents();
     setTimeout(showNavBar, 1); // kludge -- only animates if timed out
 }
 
-function getOldContentsColor() {
-    return getColorClass($(".content"));
+function getOldbackgroundColor() {
+    return getColorClass($(".background"));
 }
 
-function deleteOldContent() {
-    $(".detail > .content").remove();
+function deleteOldbackground() {
+    $(".detail > .background").remove();
 }
 
 function createNavBar(colorClass) {
@@ -95,14 +96,14 @@ function createNavBar(colorClass) {
 }
 
 function moveNavBarContents() {
-    $(".content").children().clone().appendTo($(".navbar"));
-    $(".content").children().remove();
+    $(".background").children().clone().appendTo($(".navbar"));
+    $(".background").children().remove();
     setupNavBarEvents(); // set up clickies
 }
 
-function transformOldNavBarToContent() {
-    var navbar = $('.content-size'); // kludge
-    navbar.addClass("content");
+function transformOldNavBarTobackground() {
+    var navbar = $('.background-size'); // kludge
+    navbar.addClass("background");
     navbar.removeClass("navbar");
 }
 
@@ -113,6 +114,28 @@ function setupDetailEvents() {
 }
 
 function setupNavBarEvents() {
-    $(".navbar > a").click(pullUpNavBar);
+    // Content
+    $("a:contains(About)").click(function() { displayContent("about.html"); });
+    $("a:contains(Contact)").click(function() { displayContent("contact.html"); });
+}
+
+function displayContent(file) {
+    pullUpNavBar();
+    if (contentIsVisible())
+        $('.content').fadeOut('fast', function() { loadAndRevealContent(file); });
+    else
+        loadAndRevealContent(file);
+}
+
+function loadAndRevealContent(file) {
+    var content = $('.content');
+    content.load(file);
+    setTimeout(function() {
+        content.fadeIn("fast");
+    }, 400);
+}
+
+function contentIsVisible() {
+    return $('.content').css('display') != "none";
 }
 

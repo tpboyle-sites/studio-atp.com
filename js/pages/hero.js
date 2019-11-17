@@ -57,7 +57,7 @@ function pullDown() {
         });
         msElapsed = msElapsed + msPerFrame;
         heroCanvas.draw(); 
-    }, msPerFrame); 
+    }, msPerFrame);
     hideHeroControls();
 }
 
@@ -68,7 +68,6 @@ function allPanelsHaveBeenShown(panels) {
     }
     return false;
 }
-
 
 
 // INTRO ANIMATION
