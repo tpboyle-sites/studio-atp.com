@@ -7,8 +7,13 @@ body {
 }
 
 @font-face {
-    font-family: "testfont";
+    font-family: "font-navbar";
     src: url("/fonts/CassandraTwo.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "font-text";
+    src: url("/fonts/Arkhip_font.ttf") format("truetype");
 }
 
 /* page anchor */
@@ -184,7 +189,7 @@ input {
     margin: 30px 10px;
 
     /* font */
-    font-family: testfont;
+    font-family: font-navbar;
     text-decoration: none;
     font-size: 6vh;
     color: white;
