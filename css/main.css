@@ -107,7 +107,25 @@ input {
     }
 
     .name {
-        width: 40%;
+        height: 40%;
+    }
+
+    .detail .name {
+        top: 20%;
+        height: 30%;
+    }
+
+    .detail .content {
+        top: 65%;
+        height: 40%;
+    }
+
+    .detail h1 {
+        font-size: 45pt;
+    }
+
+    .detail h3 {
+        font-size: 20pt;
     }
 }
 
