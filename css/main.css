@@ -191,10 +191,18 @@ input {
     z-index: 6;
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 60%;
     width: 80%;
     height: 50%;
     transform: translate(-50%, -50%);
+}
+
+.scene {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
 }
 
 .layout-ctr {

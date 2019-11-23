@@ -1,0 +1,41 @@
+
+
+/* NAVBAR */
+
+@font-face {
+    font-family: "font-navbar";
+    src: url("/fonts/CassandraTwo.ttf") format("truetype");
+}
+
+
+/* TEST */
+
+@font-face {
+    font-family: "arkhip";
+    src: url("/fonts/Arkhip_font.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "bondi";
+    src: url("/fonts/Bondi.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "gladifilthefte";
+    src: url("/fonts/Gladifilthefte.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "rainfall";
+    src: url("/fonts/RAINFALL.otf") format("truetype");
+}
+
+@font-face {
+    font-family: "westmeath";
+    src: url("/fonts/Westmeath.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "westmeath-italic";
+    src: url("/fonts/Westmeath\ Italic.ttf") format("truetype");
+}

@@ -169,13 +169,14 @@ function revealScenes(scenes, prev = null) {
 
 function transitionScenes(prev, next) {
     if (prev)
-        $(prev).fadeOut("slow");
-    revealSceneElements(next);
+        $(prev).fadeOut("slow", function() { revealSceneElements(next); });
+    else
+        revealSceneElements(next);
 }
 
 function revealSceneElements(scene) {
     var elements = $(scene).children();
-    $(elements).attr("hidden", "true");
+    $(elements).hide();
     $(scene).show();
     revealElements(elements);
 }
@@ -198,7 +199,7 @@ function revealElements(elements) {
 
 function revealElement(e) {
     var parts = $(e).children();
-    parts.attr("hidden", "true");
+    parts.hide();
     $(e).show();
     revealParts(parts);
 }
@@ -208,7 +209,6 @@ function revealElement(e) {
 
 function revealParts(parts) {
     $(parts).fadeIn("slow");
-    parts.attr("hidden", "false");
 }
 
 
