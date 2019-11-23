@@ -81,7 +81,7 @@ function afterExpansion() {
     transformOldNavBarTobackground();
     createNavBar(colorClass);
     moveNavBarContents();
-    setTimeout(showNavBar, 1); // kludge -- only animates if timed out
+    setTimeout(showNavBar, 50); // kludge -- only animates if timed out
 }
 
 function getOldbackgroundColor() {
