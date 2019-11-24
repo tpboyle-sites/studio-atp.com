@@ -32,11 +32,8 @@ input {
     outline: none;
 }
 
-/* hero */
 
-#hero-canvas {
-    z-index: 3;
-}
+/* name */
 
 .hero .name {
     /* position/size */
@@ -62,6 +59,13 @@ input {
 
 .name img {
     margin: 10px 0px;
+}
+
+
+/* hero */
+
+#hero-canvas {
+    z-index: 3;
 }
 
 #pulldown-btn {
@@ -90,8 +94,12 @@ input {
         left: 80%;
     }
 
-    .name {
-        width: 50%;
+    .hero .name {
+        width: 70%;
+    }
+
+    .detail .name {
+        width: 65%;
     }
 }
 
@@ -106,13 +114,13 @@ input {
         left: 88%;
     }
 
-    .name {
-        height: 40%;
+    .hero .name {
+        height: 45%;
     }
 
     .detail .name {
-        top: 20%;
-        height: 30%;
+        top: 22%;
+        height: 32%;
     }
 
     .detail .content {
@@ -128,6 +136,7 @@ input {
         font-size: 20pt;
     }
 }
+
 
 /* detail */
 
@@ -248,9 +257,14 @@ input {
     height: 50%;
 }
 
-.header {
-    color: white;
+.detail .content h3, h1 {
+    position: relative;
+    top: 15%;
 }
+
+
+
+/* text */
 
 p.boldbold {
     font-size: 40pt;
@@ -267,12 +281,15 @@ p, h1, h2, h3 {
 }
 
 h1 {
-    font-size: 80pt;
+    font-size: 70pt;
 }
 
 h3 {
     font-size: 35pt;
 }
+
+
+/* animation */
 
 @keyframes float {
 	0% {
