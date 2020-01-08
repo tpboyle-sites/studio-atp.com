@@ -274,7 +274,7 @@ p.boldbold {
     text-align: center;
 }
 
-p, h1, h2, h3 {
+p, h1, h2, h3, a {
     color: white;
     font-family: westmeath-italic;
     margin: 0;
@@ -288,6 +288,9 @@ h3 {
     font-size: 35pt;
 }
 
+a {
+    text-decoration: none;
+}
 
 /* animation */
 
